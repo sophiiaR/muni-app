@@ -1,16 +1,16 @@
 import { CheckIcon } from '@heroicons/react/20/solid'
 
 const steps = [
-    { name: 'Create account', description: 'Vitae sed mi luctus laoreet.', href: '#', status: 'complete' },
+    { name: 'CARGA DE INFORMACION INICIAL', description: 'Plano de construcción y declaración jurada', href: '#', status: 'complete' },
     {
-        name: 'Profile information',
-        description: 'Cursus semper viverra facilisis et et some more.',
+        name: 'CERTIFICADO DE APORTE',
+        description: 'Comprobante de pago y fecha de pago',
         href: '#',
         status: 'current',
     },
-    { name: 'Business information', description: 'Penatibus eu quis ante.', href: '#', status: 'upcoming' },
-    { name: 'Theme', description: 'Faucibus nec enim leo et.', href: '#', status: 'upcoming' },
-    { name: 'Preview', description: 'Iusto et officia maiores porro ad non quas.', href: '#', status: 'upcoming' },
+    { name: 'COMPROBANTE DE PAGO', description: 'Pago del permiso y fecha de pago', href: '#', status: 'upcoming' },
+    { name: 'PERMISO DE EDIFICACION', description: 'Expediente aprobado', href: '#', status: 'upcoming' },
+    // { name: 'Preview', description: 'Iusto et officia maiores porro ad non quas.', href: '#', status: 'upcoming' },
 ]
 
 function classNames(...classes) {
