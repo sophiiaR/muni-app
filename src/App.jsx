@@ -1,18 +1,10 @@
-import Dashboard from './components/Dashboard';
-import FormLayout from './components/FormLayout';
-import Navbar from './components/Navbar';
-import PageHeading from './components/PageHeading';
-import Steps from './components/Steps';
+import Page1 from './pages/Page1'
 
 function App() {
 
   return (
     <div>
-      <Navbar />
-      <PageHeading/>
-      <Dashboard />
-      <Steps />
-      <FormLayout/>
+      <Page1/>
     </div>
   )
 }
