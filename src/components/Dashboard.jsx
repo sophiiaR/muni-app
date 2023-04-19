@@ -1,6 +1,9 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import PageHeading from './PageHeading'
+import Steps from './Steps'
+import FormLayout from './FormLayout'
 
 const user = {
   name: 'Tom Cook',
@@ -9,10 +12,10 @@ const user = {
     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  { name: 'Certificados a aprobar', href: '#', current: true },
+  // { name: 'Team', href: '#', current: false },
+  // { name: 'Projects', href: '#', current: false },
+  // { name: 'Calendar', href: '#', current: false },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -45,12 +48,12 @@ export default function Dashboard() {
                     <div className="flex flex-shrink-0 items-center">
                       <img
                         className="block h-8 w-auto lg:hidden"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                        src="../../logo_muni.png"
                         alt="Your Company"
                       />
                       <img
                         className="hidden h-8 w-auto lg:block"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                        src="../../logo_muni.png"
                         alt="Your Company"
                       />
                     </div>
@@ -187,13 +190,21 @@ export default function Dashboard() {
         </Disclosure>
 
         <div className="py-10">
-          <header>
+          {/* <header>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900">Dashboard</h1>
             </div>
-          </header>
+          </header> */}
           <main>
-            <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">{/* Your content */}</div>
+            <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 flex flex-col space-y-20">
+              <PageHeading />
+              <div className="grid grid-cols-2 gap-4">
+                <Steps />
+                <div className=" border-slate-950">
+                  <FormLayout/>
+                </div>
+              </div>
+            </div>
           </main>
         </div>
       </div>
