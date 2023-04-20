@@ -3,7 +3,6 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import PageHeading from "./PageHeading";
 import Steps from "./Steps";
-import FormLayout from "./FormLayout";
 import Card from "./Card";
 import FormStep2 from "./FormStep2";
 
@@ -15,9 +14,6 @@ const user = {
 };
 const navigation = [
   { name: "Certificados a aprobar", href: "#", current: true },
-  // { name: 'Team', href: '#', current: false },
-  // { name: 'Projects', href: '#', current: false },
-  // { name: 'Calendar', href: '#', current: false },
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
@@ -32,14 +28,6 @@ function classNames(...classes) {
 export default function Dashboard() {
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
       <div className="min-h-full">
         <Disclosure as="nav" className="bg-white shadow-sm">
           {({ open }) => (
@@ -210,21 +198,21 @@ export default function Dashboard() {
         </Disclosure>
 
         <div className="py-10 bg-gray-100">
-          {/* <header>
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900">Dashboard</h1>
-            </div>
-          </header> */}
           <main>
             <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 flex flex-col space-y-20">
-              <PageHeading />
+              <PageHeading 
+                title="Construcción Edificio Anexo - Hospital Las Parejas" 
+                type="Edificación" 
+                name="Juan Fernando Ardusso (Mat. 1-444-5)" 
+                date="Iniciado el 26/02/2023" 
+                status="En progreso"
+              />
               <div className="grid grid-cols-[300px_auto] gap-16">
                 <Steps />
                 <div className="">
                   <Card title="Certificado de aporte" subtitle="Version 1">
                     <FormStep2 />
                   </Card>
-                  {/* <FormLayout/> */}
                 </div>
               </div>
             </div>
