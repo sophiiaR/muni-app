@@ -33,9 +33,7 @@ const pageHeadingMeta = [
   {icon:<ClockIcon/>, iconClass:"mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400 aria-hidden='true'", status: "En progreso"},
 ]
 
-const pageHeadingButton = [
-  {status: true}
-]
+const pageHeadingButton = true
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -219,7 +217,7 @@ export default function Dashboard() {
               <PageHeading 
                 pageHeadingTitle={pageHeadingTitle}
                 pageHeadingMeta={pageHeadingMeta}
-                pageHeadingButton='true'
+                pageHeadingButton={pageHeadingButton}
               />
               <div className="grid grid-cols-[300px_auto] gap-16">
                 <Steps />
