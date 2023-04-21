@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { BriefcaseIcon, UserCircleIcon, CalendarDaysIcon, ClockIcon } from "@heroicons/react/24/solid";
 import PageHeading from "./PageHeading";
 import Steps from "./Steps";
 import Card from "./Card";
@@ -20,6 +21,21 @@ const userNavigation = [
   { name: "Settings", href: "#" },
   { name: "Sign out", href: "#" },
 ];
+
+const pageHeadingTitle = [
+  { name: "Construcción Edificio Anexo - Hospital Las Parejas", },
+];
+
+const pageHeadingMeta = [
+  {icon:<BriefcaseIcon/>, iconClass:"mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400 aria-hidden='true'", type: "Edificación"}, 
+  {icon:<UserCircleIcon/>, iconClass:"mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400 aria-hidden='true'", name:"Juan Fernando Ardusso (Mat. 1-444-5)"}, 
+  {icon:<CalendarDaysIcon/>, iconClass:"mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400 aria-hidden='true'", date: "Iniciado el 26/02/2023"}, 
+  {icon:<ClockIcon/>, iconClass:"mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400 aria-hidden='true'", status: "En progreso"},
+]
+
+const pageHeadingButton = [
+  {status: true}
+]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -201,11 +217,9 @@ export default function Dashboard() {
           <main>
             <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 flex flex-col space-y-20">
               <PageHeading 
-                title="Construcción Edificio Anexo - Hospital Las Parejas" 
-                type="Edificación" 
-                name="Juan Fernando Ardusso (Mat. 1-444-5)" 
-                date="Iniciado el 26/02/2023" 
-                status="En progreso"
+                pageHeadingTitle={pageHeadingTitle}
+                pageHeadingMeta={pageHeadingMeta}
+                pageHeadingButton='true'
               />
               <div className="grid grid-cols-[300px_auto] gap-16">
                 <Steps />

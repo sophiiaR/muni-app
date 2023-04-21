@@ -13,42 +13,56 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function PageHeading(props) {
+export default function PageHeading({ pageHeadingTitle, pageHeadingMeta, pageHeadingButton }) {
   return (
     <div className="lg:flex lg:items-center lg:justify-between">
       <div className="min-w-0 flex-1">
         <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
-          {props.title}
+        {pageHeadingTitle[0].name}
         </h2>
         <div className="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
           <div className="mt-2 flex items-center text-sm text-gray-500">
-            <BriefcaseIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-            {props.type}
+            {/* <BriefcaseIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" /> */}
+            <div className={pageHeadingMeta[0].iconClass}>
+              {pageHeadingMeta[0].icon}
+            </div>
+            {pageHeadingMeta[0].type}
           </div>
           <div className="mt-2 flex items-center text-sm text-gray-500">
-            <UserCircleIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-            {props.name}
+            {/* <UserCircleIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" /> */}
+            <div className={pageHeadingMeta[1].iconClass}>
+              {pageHeadingMeta[1].icon}
+            </div>
+            {pageHeadingMeta[1].name}
           </div>
           <div className="mt-2 flex items-center text-sm text-gray-500">
-            <CalendarDaysIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-            {props.date}
+            {/* <CalendarDaysIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" /> */}
+            <div className={pageHeadingMeta[2].iconClass}>
+              {pageHeadingMeta[2].icon}
+            </div>
+            {pageHeadingMeta[2].date}
           </div>
           <div className="mt-2 flex items-center text-sm text-gray-500">
-            <ClockIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-            {props.status}
+            {/* <ClockIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" /> */}
+            <div className={pageHeadingMeta[3].iconClass}>
+              {pageHeadingMeta[3].icon}
+            </div>
+            {pageHeadingMeta[3].status}
           </div>
         </div>
       </div>
       <div className="mt-5 flex lg:ml-4 lg:mt-0">
-        <span className="hidden sm:block">
-          <button
-            type="button"
-            className="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-          >
-            <ArrowLeftIcon className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-500" aria-hidden="true" />
-            Volver
-          </button>
-        </span>
+        {pageHeadingButton 
+          ? (<span className="hidden sm:block">
+              <button
+                type="button"
+                className="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+              >
+                <ArrowLeftIcon className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-500" aria-hidden="true" />
+                Volver
+              </button>
+            </span>) 
+          : null}
 
         {/* Dropdown */}
         <Menu as="div" className="relative ml-3 sm:hidden">
