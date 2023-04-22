@@ -22,19 +22,17 @@ const userNavigation = [
   { name: "Sign out", href: "#" },
 ];
 
-const pageHeadingTitle = [
-  { name: "Construcción Edificio Anexo - Hospital Las Parejas", },
-];
-
-const pageHeadingMeta = [
-  {icon:<BriefcaseIcon/>, iconClass:"mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400 aria-hidden='true'", type: "Edificación"}, 
-  {icon:<UserCircleIcon/>, iconClass:"mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400 aria-hidden='true'", name:"Juan Fernando Ardusso (Mat. 1-444-5)"}, 
-  {icon:<CalendarDaysIcon/>, iconClass:"mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400 aria-hidden='true'", date: "Iniciado el 26/02/2023"}, 
-  {icon:<ClockIcon/>, iconClass:"mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400 aria-hidden='true'", status: "En progreso"},
-]
-
-const pageHeadingButton = true
-
+const pageHeading = {
+  title: "Construcción Edificio Anexo - Hospital Las Parejas",
+  meta: [
+    {icon: BriefcaseIcon, text: "Edificación"}, 
+    {icon: UserCircleIcon, text:"Juan Fernando Ardusso (Mat. 1-444-5)"}, 
+    {icon: CalendarDaysIcon, text: "Iniciado el 26/02/2023"}, 
+    {icon: ClockIcon, text: "En progreso"},
+  ],
+  showBackButton: true
+}
+  
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -215,9 +213,9 @@ export default function Dashboard() {
           <main>
             <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 flex flex-col space-y-20">
               <PageHeading 
-                pageHeadingTitle={pageHeadingTitle}
-                pageHeadingMeta={pageHeadingMeta}
-                pageHeadingButton={pageHeadingButton}
+                title={pageHeading.title}
+                meta={pageHeading.meta}
+                showBackButton={pageHeading.showBackButton}
               />
               <div className="grid grid-cols-[300px_auto] gap-16">
                 <Steps />
