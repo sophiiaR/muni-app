@@ -1,16 +1,17 @@
 import { CheckIcon } from '@heroicons/react/20/solid'
+import { useState } from 'react'
 
 const steps = [
-  { name: 'CARGA DE INFORMACION INICIAL', description: 'Plano de construcción y declaración jurada', href: '#', status: 'complete' },
+  { name: 'CARGA DE INFORMACION INICIAL', description: 'Plano de construcción y declaración jurada', href: '#', status: 'complete', letter: 'A'},
   {
     name: 'CERTIFICADO DE APORTE',
     description: 'Comprobante de pago y fecha de pago',
     href: '#',
     status: 'current',
+    letter: 'B'    
   },
-  { name: 'COMPROBANTE DE PAGO', description: 'Pago del permiso y fecha de pago', href: '#', status: 'upcoming' },
-  { name: 'PERMISO DE EDIFICACION', description: 'Expediente aprobado', href: '#', status: 'upcoming' },
-  // { name: 'Preview', description: 'Iusto et officia maiores porro ad non quas.', href: '#', status: 'upcoming' },
+  { name: 'COMPROBANTE DE PAGO', description: 'Pago del permiso y fecha de pago', href: '#', status: 'upcoming', letter: 'C'},
+  { name: 'PERMISO DE EDIFICACION', description: 'Expediente aprobado', href: '#', status: 'upcoming', letter: 'D'},
 ]
 
 function classNames(...classes) {
@@ -18,6 +19,37 @@ function classNames(...classes) {
 }
 
 export default function Steps() {
+
+  const [currentStep, setCurrentStep] = useState(steps.find((step) => step.status === 'current'))
+  const [selectedStep, setSelectedStep] = useState(null);
+
+
+  const handleStepClick = (clickedStep) => {
+  setSelectedStep(clickedStep);
+  const clickedStepIndex = steps.findIndex((step) => step.name === clickedStep.name)
+  
+    if (clickedStep.status === 'complete') {
+      // do nothing
+      return
+    } else if (clickedStep.status === 'current') {
+      clickedStep.status = 'complete'
+
+      if (clickedStepIndex < steps.length - 1) {
+        const nextStep = steps[clickedStepIndex + 1]
+        nextStep.status = 'current'
+        setCurrentStep(nextStep)
+      } else {
+        // last step, update status to complete
+        setCurrentStep(clickedStep)
+      }
+    } else {
+      // upcoming step
+      // do nothing
+      return
+    }
+  }
+
+
   return (
     <nav aria-label="Progress">
       <ol role="list" className="overflow-hidden">
@@ -28,7 +60,7 @@ export default function Steps() {
                 {stepIdx !== steps.length - 1 ? (
                   <div className="absolute left-4 top-4 -ml-px mt-0.5 h-full w-0.5 bg-indigo-600" aria-hidden="true" />
                 ) : null}
-                <a href={step.href} className="group relative flex items-start">
+                <a href={step.href} className="group relative flex items-start" onClick={() => handleStepClick(step)}>
                   <span className="flex h-9 items-center">
                     <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 group-hover:bg-indigo-800">
                       <CheckIcon className="h-5 w-5 text-white" aria-hidden="true" />
@@ -45,7 +77,7 @@ export default function Steps() {
                 {stepIdx !== steps.length - 1 ? (
                   <div className="absolute left-4 top-4 -ml-px mt-0.5 h-full w-0.5 bg-gray-300" aria-hidden="true" />
                 ) : null}
-                <a href={step.href} className="group relative flex items-start" aria-current="step">
+                <a href={step.href} className="group relative flex items-start" aria-current="step" onClick={() => handleStepClick(step)}>
                   <span className="flex h-9 items-center" aria-hidden="true">
                     <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border-2 border-indigo-600 bg-white">
                       <span className="h-2.5 w-2.5 rounded-full bg-indigo-600" />
@@ -78,6 +110,7 @@ export default function Steps() {
           </li>
         ))}
       </ol>
+      {selectedStep && <p>{selectedStep.letter}</p>}
     </nav>
   )
 }
