@@ -1,11 +1,7 @@
 import { Fragment } from 'react'
 import {
-  BriefcaseIcon,
   ArrowLeftIcon,
-  ChevronDownIcon,
-  UserCircleIcon,
-  CalendarDaysIcon,
-  ClockIcon,
+  ChevronDownIcon
 } from '@heroicons/react/20/solid'
 import { Menu, Transition } from '@headlessui/react'
 
@@ -13,42 +9,38 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function PageHeading(props) {
+export default function PageHeading({ title, meta, showBackButton }) {
+  const iconClass = "mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400"
+
   return (
     <div className="lg:flex lg:items-center lg:justify-between">
       <div className="min-w-0 flex-1">
         <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
-          {props.title}
+          {title}
         </h2>
         <div className="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
-          <div className="mt-2 flex items-center text-sm text-gray-500">
-            <BriefcaseIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-            {props.type}
-          </div>
-          <div className="mt-2 flex items-center text-sm text-gray-500">
-            <UserCircleIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-            {props.name}
-          </div>
-          <div className="mt-2 flex items-center text-sm text-gray-500">
-            <CalendarDaysIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-            {props.date}
-          </div>
-          <div className="mt-2 flex items-center text-sm text-gray-500">
-            <ClockIcon className="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-            {props.status}
-          </div>
+          {meta.map((item, index) => (
+            <div className="mt-2 flex items-center text-sm text-gray-500" key={index}>
+              <div className={iconClass} aria-hidden="true">
+                <item.icon />
+              </div>
+              {item.text}
+            </div>
+          ))}
         </div>
       </div>
       <div className="mt-5 flex lg:ml-4 lg:mt-0">
-        <span className="hidden sm:block">
-          <button
-            type="button"
-            className="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-          >
-            <ArrowLeftIcon className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-500" aria-hidden="true" />
-            Volver
-          </button>
-        </span>
+        {showBackButton
+          ? (<span className="hidden sm:block">
+            <button
+              type="button"
+              className="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+            >
+              <ArrowLeftIcon className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-500" aria-hidden="true" />
+              Volver
+            </button>
+          </span>)
+          : null}
 
         {/* Dropdown */}
         <Menu as="div" className="relative ml-3 sm:hidden">
