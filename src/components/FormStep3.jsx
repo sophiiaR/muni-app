@@ -9,7 +9,7 @@ export default function FormStep2(props) {
           htmlFor="cover-photo"
           className="block text-sm font-medium leading-6 text-gray-900"
         >
-          Certificado de aporte
+          Comprobante de pago
         </label>
         <CardActionPanel/>
       </div>
