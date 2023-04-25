@@ -1,23 +1,16 @@
 import { CheckIcon } from '@heroicons/react/20/solid'
 
-const steps = [
-  { name: 'CARGA DE INFORMACION INICIAL', description: 'Plano de construcción y declaración jurada', href: '#', status: 'complete' },
-  {
-    name: 'CERTIFICADO DE APORTE',
-    description: 'Comprobante de pago y fecha de pago',
-    href: '#',
-    status: 'current',
-  },
-  { name: 'COMPROBANTE DE PAGO', description: 'Pago del permiso y fecha de pago', href: '#', status: 'upcoming' },
-  { name: 'PERMISO DE EDIFICACION', description: 'Expediente aprobado', href: '#', status: 'upcoming' },
-  // { name: 'Preview', description: 'Iusto et officia maiores porro ad non quas.', href: '#', status: 'upcoming' },
-]
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Steps() {
+export default function Steps({onData, steps}) {
+
+  const sendData = (step,stepIdx) => {
+    const data = stepIdx;
+    onData(data);
+  }
+
   return (
     <nav aria-label="Progress">
       <ol role="list" className="overflow-hidden">
@@ -28,7 +21,7 @@ export default function Steps() {
                 {stepIdx !== steps.length - 1 ? (
                   <div className="absolute left-4 top-4 -ml-px mt-0.5 h-full w-0.5 bg-indigo-600" aria-hidden="true" />
                 ) : null}
-                <a href={step.href} className="group relative flex items-start">
+                <a href={step.href} className="group relative flex items-start" onClick={() => sendData(step,stepIdx)}>
                   <span className="flex h-9 items-center">
                     <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 group-hover:bg-indigo-800">
                       <CheckIcon className="h-5 w-5 text-white" aria-hidden="true" />
@@ -45,7 +38,7 @@ export default function Steps() {
                 {stepIdx !== steps.length - 1 ? (
                   <div className="absolute left-4 top-4 -ml-px mt-0.5 h-full w-0.5 bg-gray-300" aria-hidden="true" />
                 ) : null}
-                <a href={step.href} className="group relative flex items-start" aria-current="step">
+                <a href={step.href} className="group relative flex items-start" aria-current="step" onClick={() => sendData(step,stepIdx)}>
                   <span className="flex h-9 items-center" aria-hidden="true">
                     <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border-2 border-indigo-600 bg-white">
                       <span className="h-2.5 w-2.5 rounded-full bg-indigo-600" />
@@ -62,7 +55,7 @@ export default function Steps() {
                 {stepIdx !== steps.length - 1 ? (
                   <div className="absolute left-4 top-4 -ml-px mt-0.5 h-full w-0.5 bg-gray-300" aria-hidden="true" />
                 ) : null}
-                <a href={step.href} className="group relative flex items-start">
+                <a href={step.href} className="group relative flex items-start" onClick={() => sendData(step,stepIdx)}>
                   <span className="flex h-9 items-center" aria-hidden="true">
                     <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border-2 border-gray-300 bg-white group-hover:border-gray-400">
                       <span className="h-2.5 w-2.5 rounded-full bg-transparent group-hover:bg-gray-300" />

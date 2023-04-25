@@ -1,11 +1,14 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { BriefcaseIcon, UserCircleIcon, CalendarDaysIcon, ClockIcon } from "@heroicons/react/24/solid";
 import PageHeading from "./PageHeading";
 import Steps from "./Steps";
 import Card from "./Card";
+import FormStep1 from "./FormStep1";
 import FormStep2 from "./FormStep2";
+import FormStep3 from "./FormStep3";
+import FormStep4 from "./FormStep4";
 
 const user = {
   name: "Tom Cook",
@@ -32,12 +35,31 @@ const pageHeading = {
   ],
   showBackButton: true
 }
+
+const steps = [
+  { name: 'CARGA DE INFORMACION INICIAL', description: 'Plano de construcción y declaración jurada', href: '#', status: 'complete'},
+  {
+    name: 'CERTIFICADO DE APORTE',
+    description: 'Comprobante de pago y fecha de pago',
+    href: '#',
+    status: 'current'
+  },
+  { name: 'COMPROBANTE DE PAGO', description: 'Pago del permiso y fecha de pago', href: '#', status: 'upcoming'},
+  { name: 'PERMISO DE EDIFICACION', description: 'Expediente aprobado', href: '#', status: 'upcoming'},
+]
   
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Dashboard() {
+  
+  const [data, setData] = useState('');
+
+  const handleData = (childData) => {
+    setData(childData);
+  }
+
   return (
     <>
       <div className="min-h-full">
@@ -218,10 +240,13 @@ export default function Dashboard() {
                 showBackButton={pageHeading.showBackButton}
               />
               <div className="grid grid-cols-[300px_auto] gap-16">
-                <Steps />
+                <Steps onData={handleData} steps={steps}/>
                 <div className="">
                   <Card title="Certificado de aporte" subtitle="Version 1">
-                    <FormStep2 />
+                    { data == 0 && <FormStep1 />}
+                    { data == 1 && <FormStep2 />}
+                    { data == 2 && <FormStep3 />}
+                    { data == 3 && <FormStep4 />}
                   </Card>
                 </div>
               </div>
