@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { BriefcaseIcon, UserCircleIcon, CalendarDaysIcon, ClockIcon } from "@heroicons/react/24/solid";
 import PageHeading from "./PageHeading";
 import Steps from "./Steps";
 import Card from "./Card";
@@ -24,6 +25,17 @@ const userNavigation = [
   { name: "Sign out", href: "#" },
 ];
 
+const pageHeading = {
+  title: "Construcción Edificio Anexo - Hospital Las Parejas",
+  meta: [
+    {icon: BriefcaseIcon, text: "Edificación"}, 
+    {icon: UserCircleIcon, text:"Juan Fernando Ardusso (Mat. 1-444-5)"}, 
+    {icon: CalendarDaysIcon, text: "Iniciado el 26/02/2023"}, 
+    {icon: ClockIcon, text: "En progreso"},
+  ],
+  showBackButton: true
+}
+  
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -211,11 +223,9 @@ export default function Dashboard() {
           <main>
             <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 flex flex-col space-y-20">
               <PageHeading 
-                title="Construcción Edificio Anexo - Hospital Las Parejas" 
-                type="Edificación" 
-                name="Juan Fernando Ardusso (Mat. 1-444-5)" 
-                date="Iniciado el 26/02/2023" 
-                status="En progreso"
+                title={pageHeading.title}
+                meta={pageHeading.meta}
+                showBackButton={pageHeading.showBackButton}
               />
               <div className="grid grid-cols-[300px_auto] gap-16">
                 <Steps onData={handleData}/>
