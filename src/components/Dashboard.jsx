@@ -1,10 +1,13 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import PageHeading from "./PageHeading";
 import Steps from "./Steps";
 import Card from "./Card";
+import FormStep1 from "./FormStep1";
 import FormStep2 from "./FormStep2";
+import FormStep3 from "./FormStep3";
+import FormStep4 from "./FormStep4";
 
 const user = {
   name: "Tom Cook",
@@ -26,6 +29,13 @@ function classNames(...classes) {
 }
 
 export default function Dashboard() {
+  
+  const [data, setData] = useState('');
+
+  const handleData = (childData) => {
+    setData(childData);
+  }
+
   return (
     <>
       <div className="min-h-full">
@@ -208,10 +218,13 @@ export default function Dashboard() {
                 status="En progreso"
               />
               <div className="grid grid-cols-[300px_auto] gap-16">
-                <Steps />
+                <Steps onData={handleData}/>
                 <div className="">
                   <Card title="Certificado de aporte" subtitle="Version 1">
-                    <FormStep2 />
+                    { data == 1 && <FormStep1 />}
+                    { data == 2 && <FormStep2 />}
+                    { data == 3 && <FormStep3 />}
+                    { data == 4 && <FormStep4 />}
                   </Card>
                 </div>
               </div>
