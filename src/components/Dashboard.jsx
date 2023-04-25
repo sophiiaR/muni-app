@@ -35,6 +35,18 @@ const pageHeading = {
   ],
   showBackButton: true
 }
+
+const steps = [
+  { name: 'CARGA DE INFORMACION INICIAL', description: 'Plano de construcción y declaración jurada', href: '#', status: 'complete'},
+  {
+    name: 'CERTIFICADO DE APORTE',
+    description: 'Comprobante de pago y fecha de pago',
+    href: '#',
+    status: 'current'
+  },
+  { name: 'COMPROBANTE DE PAGO', description: 'Pago del permiso y fecha de pago', href: '#', status: 'upcoming'},
+  { name: 'PERMISO DE EDIFICACION', description: 'Expediente aprobado', href: '#', status: 'upcoming'},
+]
   
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -228,13 +240,13 @@ export default function Dashboard() {
                 showBackButton={pageHeading.showBackButton}
               />
               <div className="grid grid-cols-[300px_auto] gap-16">
-                <Steps onData={handleData}/>
+                <Steps onData={handleData} steps={steps}/>
                 <div className="">
                   <Card title="Certificado de aporte" subtitle="Version 1">
-                    { data == 1 && <FormStep1 />}
-                    { data == 2 && <FormStep2 />}
-                    { data == 3 && <FormStep3 />}
-                    { data == 4 && <FormStep4 />}
+                    { data == 0 && <FormStep1 />}
+                    { data == 1 && <FormStep2 />}
+                    { data == 2 && <FormStep3 />}
+                    { data == 3 && <FormStep4 />}
                   </Card>
                 </div>
               </div>
